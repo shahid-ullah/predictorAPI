@@ -34,14 +34,13 @@ def preprocess_requested_data(json_data):
     try:
     # canpuring data in list
         input_feature_list = [int(dic_data[feature]) for feature in required_features]
-        print(f"input feature list: {input_feature_list}")
+        # print(f"input feature list: {input_feature_list}")
     except KeyError as key_error:
         return HttpResponse(f"please provide {key_error} ID")
-
     arr = np.array(input_feature_list)
     arr = arr.reshape(1, -1)
 
-    return arr 
+    return arr
 
 
 
@@ -59,7 +58,7 @@ def call_model(request):
             return HttpResponse("Provide 'data' as a key in request method")
 
         arr = preprocess_requested_data(json_data)
-        # return HttpResponse(arr)
         prediction = RecipientFinderConfig.model_.predict(arr)
+        # return HttpResponse(arr)
         json_formate = {'user_id': str(prediction[0])}
         return JsonResponse(json_formate)
