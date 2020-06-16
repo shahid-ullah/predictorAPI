@@ -19,5 +19,5 @@ from recipient_finder import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('classify/', views.call_model, name='classify'),
+    path('api/', views.call_model, name='api'),
 ]
