@@ -3,6 +3,7 @@ import json
 import numpy as np
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from .apps import RecipientFinderConfig
 
@@ -46,9 +47,30 @@ def preprocess_requested_data(json_data):
 
 
 # @http_method_list(['GET'])
+
+@csrf_exempt
 def call_model(request):
     if request.method == 'POST':
         return HttpResponse('Call prediction api with get method')
+        try:
+            # json_data = request.POST.get('data', 'default_value') # get the json data
+            json_data = request.POST # get the json data
+            print("Before for loop")
+            for key, value in json_data.items():
+                print(f"key: {key}, value: {value}")
+            return HttpResponse(json_data.items())
+            print("After for loop")
+        except KeyError:
+            return HttpResponse("keyError")
+
+        return HttpResponse("outside of try except")
+        # return HttpResponse("outside of try catch")
+
+        # arr = preprocess_requested_data(json_data)
+        # prediction = RecipientFinderConfig.model_.predict(arr)
+        # # return HttpResponse(arr)
+        # json_formate = {'user_id': str(prediction[0])}
+        # return JsonResponse(json_formate)
 
     if request.method == 'GET':
         try:
