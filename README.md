@@ -4,7 +4,7 @@
 See post on [git lfs](https://mydeveloperplanet.com/2018/10/31/git-lfs-why-and-how-to-use/) for details.
 
 
-** An Example of API Call using python Requests module**
+## An Example of API Call using python Requests module
 ```
 >>> import requests
 >>> import json
