@@ -82,5 +82,5 @@ def call_model(request):
         arr = preprocess_requested_data(json_data)
         prediction = RecipientFinderConfig.model_.predict(arr)
         # return HttpResponse(arr)
-        json_formate = {'user_id': str(prediction[0])}
+        json_formate = {'user_id': int(prediction[0])}
         return JsonResponse(json_formate)
