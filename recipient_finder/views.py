@@ -4,6 +4,10 @@ import numpy as np
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework import authentication, permissions
 
 from .apps import RecipientFinderConfig
 
@@ -84,3 +88,23 @@ def call_model(request):
         # return HttpResponse(arr)
         json_formate = {'user_id': str(prediction[0])}
         return JsonResponse(json_formate)
+
+
+class PredictAPIView(APIView):
+
+    authentication_classes = [authentication.TokenAuthentication]
+
+    def get(self, request, format=None):
+        """
+        Return a list of all users.
+        """
+        usernames = ["shahid", "shafiq"]
+        return Response(usernames)
+
+
+
+@api_view(['GET', 'POST'])
+def hello_world(request):
+    if request.method == 'POST':
+        return Response({"message": "Got some data!", "data": request.data})
+    return Response({"message": "Hello, world!"})

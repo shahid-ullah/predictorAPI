@@ -20,4 +20,6 @@ from recipient_finder import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', views.call_model, name='api'),
+    path('v1/', views.PredictAPIView.as_view(), name='v1'),
+    path('hello/', views.hello_world, name='hello'),
 ]
