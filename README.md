@@ -5,6 +5,10 @@ See post on [git lfs](https://mydeveloperplanet.com/2018/10/31/git-lfs-why-and-h
 
 
 ## An Example of API Call using python Requests module
+
+
+# Post method
+
 ```
 >>> import requests
 >>> import json
@@ -20,13 +24,10 @@ See post on [git lfs](https://mydeveloperplanet.com/2018/10/31/git-lfs-why-and-h
        	}
 ```
 
-```
->>> json_data = json.dumps(dic)
->>> payload = {'data': json_data}
-```
+
 
 ```
->>> response = requests.get("http://localhost:8000/api/", params=payload)
+>>> response = requests.post("http://localhost:8000/api/", json=dic)
 >>> response_text = response.text
 >>> user_id = json.loads(response_text)
 
