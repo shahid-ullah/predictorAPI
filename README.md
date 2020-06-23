@@ -36,3 +36,22 @@ See post on [git lfs](https://mydeveloperplanet.com/2018/10/31/git-lfs-why-and-h
 
 
 ```
+
+
+## An Example of API Call using Postman
+
+# post method
+
+### send data to request body as json type.
+**Body->raw->JSON**
+
+
+#### The required dictionary data.
+```
+{"from_office_id": 28, "from_office_unit_id": 4643, "from_officer_id": 77162, "from_officer_designation_id": 2088, "to_office_id": 2088, "to_office_unit_id": 10456, "to_officer_id": 86, "to_officer_designation_id": 4486}
+
+
+```
+
+
+
